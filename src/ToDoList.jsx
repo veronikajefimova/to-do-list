@@ -4,6 +4,7 @@ function ToDoList(){
 
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
+    const [completedTasks, setCompletedTask] = useState([]);
 
     function handleInputChange(event){
         setNewTask(event.target.value);
@@ -40,6 +41,20 @@ function ToDoList(){
         }
     }
 
+    function completeTask(index){
+        const updatedTasks = [...tasks];
+        setCompletedTask([...completedTasks, updatedTasks[index]]);
+        deleteTask(index);
+    }
+
+    function unCompleteTask(index){
+
+        setTasks(t => [...t, completedTasks[index]]);
+
+        const updatedTasks = completedTasks.filter((_,i) => i !== index);
+        setCompletedTask(updatedTasks);
+    }
+
     return(
     <div className='to-do-list'>
 
@@ -53,10 +68,23 @@ function ToDoList(){
         <ol>
             {tasks.map((task, index) => 
                 <li key={index}>
+                    <input type="checkbox" onChange={() => completeTask(index)}/>
                     <span className='text'>{task}</span>
                     <button className='delete-button' onClick={() => deleteTask(index)}>Delete</button>
                     <button className='move-button' onClick={() => moveTaskUp(index)}>UP</button>
                     <button className='move-button' onClick={() => moveTaskDown(index)}>DOWN</button>
+                </li>
+            )}
+        </ol>
+
+        <span>Completed tasks</span>
+
+        <ol>
+            {completedTasks.map((task, index) => 
+                <li key={index}>
+                    <input type="checkbox" onChange={() => unCompleteTask(index)} value={task} checked/>
+                    <span className='text'>{task}</span>
+                    <button className='delete-button' onClick={() => deleteTask(index)}>Delete</button>
                 </li>
             )}
         </ol>
