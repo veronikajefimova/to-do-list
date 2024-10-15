@@ -42,8 +42,7 @@ function ToDoList(){
     }
 
     function completeTask(index){
-        const updatedTasks = [...tasks];
-        setCompletedTask([...completedTasks, updatedTasks[index]]);
+        setCompletedTask([...completedTasks, tasks[index]]);
         deleteTask(index);
     }
 
@@ -56,38 +55,48 @@ function ToDoList(){
     }
 
     return(
-    <div className='to-do-list'>
+    <div className='to-do-list .text-center'>
 
-        <h1>To Do List</h1>
+        <h1 className='mb-4'>To Do List</h1>
 
         <div>
-            <input type="text" placeholder="Enter a task..." value={newTask} onChange={handleInputChange} name="" id="" />
+            <input type="text" placeholder="Enter a task..." value={newTask} onChange={handleInputChange} id="add-new-task" />
             <button className='add-button' onClick={addTask}>Add</button>
         </div>
 
-        <ol>
-            {tasks.map((task, index) => 
-                <li key={index}>
-                    <input type="checkbox" onChange={() => completeTask(index)}/>
-                    <span className='text'>{task}</span>
-                    <button className='delete-button' onClick={() => deleteTask(index)}>Delete</button>
-                    <button className='move-button' onClick={() => moveTaskUp(index)}>UP</button>
-                    <button className='move-button' onClick={() => moveTaskDown(index)}>DOWN</button>
-                </li>
-            )}
-        </ol>
+        <div className='container-fluid mt-2 w-50'>
+            <ol className='list-group list-group-flush'>
+                {tasks.map((task, index) => 
+                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
+                        <div className="form-check form-check-inline ">
+                            <input className="form-check-input" type="checkbox" onChange={() => completeTask(index)} id="complete-task"/>
+                            <span className='text form-check-label' for="complete-task">{task}</span>
+                        </div>
+                        <div className="form-check form-check-inline">
+                            <button className='delete-button btn-dark me-1' onClick={() => deleteTask(index)}>Delete</button>
+                            <button className='move-button btn-dark me-1' onClick={() => moveTaskUp(index)}>&uarr;</button>
+                            <button className='move-button btn-dark' onClick={() => moveTaskDown(index)}>&darr;</button>
+                        </div>
+                    </li>
+                )}
+            </ol>
+        </div>
 
-        <span>Completed tasks</span>
+        <span className='mt-3'>Completed tasks</span>
 
-        <ol>
-            {completedTasks.map((task, index) => 
-                <li key={index}>
-                    <input type="checkbox" onChange={() => unCompleteTask(index)} value={task} checked/>
-                    <span className='text'>{task}</span>
-                    <button className='delete-button' onClick={() => deleteTask(index)}>Delete</button>
-                </li>
-            )}
-        </ol>
+        <div className='container-fluid mt-2 w-50'>
+            <ol className='list-group list-group-flush'>
+                {completedTasks.map((task, index) => 
+                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="checkbox" onChange={() => unCompleteTask(index)} checked/>
+                            <del className='form-check-label' for="complete-task">{task}</del>
+                        </div>
+                        <button className='delete-button btn-dark' onClick={() => deleteTask(index)}>Delete</button>
+                    </li>
+                )}
+            </ol>
+        </div>
 
     </div>)
 }
