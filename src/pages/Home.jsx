@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useTheme } from '../ThemeContext';
 
-function ToDoList(){
+function Home(){
 
+    const { theme } = useTheme();
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState("");
     const [completedTasks, setCompletedTask] = useState([]);
@@ -65,9 +67,9 @@ function ToDoList(){
         </div>
 
         <div className='container-fluid mt-2 w-50'>
-            <ol className='list-group list-group-flush'>
+            <ol className='list-group list-group-flush' data-bs-theme={theme}>
                 {tasks.map((task, index) => 
-                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
+                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center bg-transparent'>
                         <div className="form-check form-check-inline ">
                             <input className="form-check-input" type="checkbox" onChange={() => completeTask(index)} id="complete-task"/>
                             <span className='text form-check-label' for="complete-task">{task}</span>
@@ -85,9 +87,9 @@ function ToDoList(){
         <span className='mt-3'>Completed tasks</span>
 
         <div className='container-fluid mt-2 w-50'>
-            <ol className='list-group list-group-flush'>
+            <ol className='list-group list-group-flush' data-bs-theme={theme}>
                 {completedTasks.map((task, index) => 
-                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center'>
+                    <li key={index} className='list-group-item d-flex justify-content-between align-items-center bg-transparent'>
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" type="checkbox" onChange={() => unCompleteTask(index)} checked/>
                             <del className='form-check-label' for="complete-task">{task}</del>
@@ -100,4 +102,4 @@ function ToDoList(){
 
     </div>)
 }
-export default ToDoList
+export default Home

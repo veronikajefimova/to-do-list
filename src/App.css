@@ -1,8 +1,3 @@
-body, .list-group-item{
-  background-color: #242424;
-  color: white;
-}
-
 #root {
   width: 100vw;
   height: 100vh;
@@ -21,13 +16,4 @@ body, .list-group-item{
 
 #add-new-task:focus{
   outline: none;
-}
-
-ol li{ 
-  list-style-type: none; 
-  border-bottom: 1px solid #aaa;
-}
-
-li:last-child{
-  border: 0;
 }

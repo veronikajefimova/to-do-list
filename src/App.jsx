@@ -1,8 +1,9 @@
 import './App.css'
-import ToDoList from './ToDoList'
-import Header from './Header'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Layout from './pages/Layout'
+import Home from './pages/Home'
+import Calendar from './pages/Calendar'
 import { ThemeProvider, useTheme } from './ThemeContext'
-import { width } from '@mui/system';
 
 const ThemedApp = () => {
   const { theme } = useTheme(); // Получаем текущую тему
@@ -17,8 +18,14 @@ const ThemedApp = () => {
 
   return (
     <div style={appStyle}>
-      <Header/>
-      <ToDoList/>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path='Calendar' element={<Calendar />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
