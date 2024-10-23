@@ -1,8 +1,11 @@
 import ThemeToggler from "./ThemeToggler";
+import { useTheme } from "./ThemeContext";
 
 function Header() {
+  const { theme } = useTheme();
+
   return (
-    <nav className="navbar navbar-expand-lg w-100" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg w-100" data-bs-theme={theme}>
       <div className="container-fluid">
         <a className="navbar-brand" href="#">Planner</a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
