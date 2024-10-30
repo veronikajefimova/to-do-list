@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './pages/Layout'
 import Home from './pages/Home'
-import Calendar from './pages/Calendar'
+import MyCalendar from './pages/MyCalendar'
 import { ThemeProvider, useTheme } from './ThemeContext'
 
 const ThemedApp = () => {
@@ -22,7 +22,7 @@ const ThemedApp = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path='Calendar' element={<Calendar />} />
+            <Route path='MyCalendar' element={<MyCalendar />} />
           </Route>
         </Routes>
       </BrowserRouter>

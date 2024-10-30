@@ -19,7 +19,7 @@ function Layout() {
                 <Link className="nav-link active" to="/">Home</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/Calendar">Calendar</Link>
+                <Link className="nav-link" to="/MyCalendar">Calendar</Link>
               </li>
             </ul>
             <div className="d-flex">
